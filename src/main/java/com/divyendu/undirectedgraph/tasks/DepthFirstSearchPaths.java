@@ -4,6 +4,8 @@ import com.divyendu.undirectedgraph.UndirectedGraph;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class DepthFirstSearchPaths {
 	
@@ -60,7 +62,7 @@ public class DepthFirstSearchPaths {
 				secondLast = edgeTo[secondLast];
 			}
 		}
-		
+		Collections.reverse(path);
 		return path;
 	}
 
