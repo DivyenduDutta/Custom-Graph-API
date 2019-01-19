@@ -76,13 +76,13 @@ public class DepthFirstSearch {
 			//initialize maxSize from the graph
 			maxSize = udGraph.getNumberOfVerticesInUDGraph();
 			
-			this.source = source;
 			
 			if(!udGraph.validateEdgeVertices(source)) {
 				System.out.println("Please provide proper integer value for source vertex(within 0 to V-1)");
 				System.out.println("Setting source vertex to 0");
 				source = 0;
 			}
+			this.source = source;
 			edgeTo[source] = source;	//The entry for the source vertex is source itself
 			dfs(udGraph, source);
 		}
