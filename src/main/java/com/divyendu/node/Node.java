@@ -10,7 +10,6 @@ public class Node<T> {
 	
 	private T value;
 	private Node<T> nextNode;
-	private Node<T> prevNode;
 	
 	/**
 	 * Parameterised constructor which creates a node
