@@ -38,6 +38,6 @@ public class QueueTest {
 		queueClientChar.removeHead();
 		queueClientChar.insertTail('p');
 		
-		assertEquals("Pass", queueClientChar.getQueueFront().getValue().toString(),"B");;
+		assertEquals("Pass", queueClientChar.getQueueFront().getValue().toString(),"B");
 	}
 }
