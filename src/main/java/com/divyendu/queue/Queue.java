@@ -1,5 +1,8 @@
 package com.divyendu.queue;
 
+import java.util.logging.Level;
+
+import com.divyendu.logger.MyLogger;
 import com.divyendu.node.Node;
 
 /**
@@ -10,12 +13,12 @@ import com.divyendu.node.Node;
  * @param <T>
  */
 public class Queue<T> {
-
 	//private Node<T> queueHead;
 	private Node<T> queueFront;	//always points to the first element in queue
 	private Node<T> queueTail;	//always points to the last element in queue
 	private int maxQueueSize;
 	private int currentQueueSize;
+	private MyLogger myLogger;	//Get instance to Logger
 	
 	/**
 	 * Default constructor - creates a queue with a header node
@@ -23,12 +26,14 @@ public class Queue<T> {
 	 * @param maxQueueSize - maximum number of elements in the queue
 	 */
 	public Queue(int maxQueueSize) {
+		myLogger = new MyLogger();
 		this.maxQueueSize = maxQueueSize;
 		this.currentQueueSize = 0;
 		//this.queueHead = new Node<T>();	//check in Node<T> implementation, default constructor creates an empty node pointing to itself - header node
 		//Initially both front and tail point to null since queue is empty
 		this.queueFront = null;
 		this.queueTail = null;
+		
 	}
 	
 	/**
@@ -41,7 +46,7 @@ public class Queue<T> {
 		int currQueueSize = getCurrentQueueSize();
 		if(getCurrentQueueSize() == getMaxQueueSize()) {
 			//Queue full - can't insert new value
-			System.out.println("The queue is full: "+getCurrentQueueSize()+ " of "+getMaxQueueSize());
+			myLogger.getLogger().log(Level.INFO, "The queue is full: "+getCurrentQueueSize()+ " of "+getMaxQueueSize());
 			return currQueueSize;
 		}
 		Node<T> tempNode = new Node<T>(value);
@@ -67,11 +72,11 @@ public class Queue<T> {
 	public int removeHead() {
 		int curQueueSize = getCurrentQueueSize();
 		if(getCurrentQueueSize() == 0) { //No elements in queue - can't remove from queue
-			System.out.println("The queue is empty");
+			myLogger.getLogger().log(Level.INFO, "The queue is empty");
 			return curQueueSize;
 		}
 		Node<T> toRemove = queueFront;
-		System.out.println("Removing element with value: "+toRemove.getValue()+" from head of queue");
+		myLogger.getLogger().log(Level.INFO, "Removing element with value: "+toRemove.getValue()+" from head of queue");
 		queueFront = queueFront.getNextNode();
 		currentQueueSize -= 1;
 		curQueueSize = getCurrentQueueSize();
