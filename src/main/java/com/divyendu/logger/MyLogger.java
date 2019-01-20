@@ -10,8 +10,8 @@ import com.divyendu.logger.formatter.MyFormatter;
 import com.divyendu.queue.Queue;
 
 public class MyLogger {
-	Logger logger = Logger.getLogger(MyLogger.class.getName());	//get logger instance
-	LogManager logManager = LogManager.getLogManager();
+	private Logger logger = Logger.getLogger(MyLogger.class.getName());	//get logger instance
+	private LogManager logManager = LogManager.getLogManager();
 	
 	public MyLogger() {
 		try {
