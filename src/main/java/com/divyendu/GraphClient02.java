@@ -1,16 +1,19 @@
 package com.divyendu;
 
+import java.util.List;
 import java.util.logging.Level;
 
 import com.divyendu.logger.MyLogger;
 import com.divyendu.undirectedgraph.UndirectedGraph;
 import com.divyendu.undirectedgraph.tasks.bfs.BreadthFirstSearch;
+import com.divyendu.undirectedgraph.tasks.bfs.BreadthFirstSearchPaths;
 
 public class GraphClient02 {
 	
 	public static final int NUMBER_OF_VERTICES = 4;
 	public static final int VERTEX = 3;
 	public static final int SOURCE = 0;
+	public static final int DESTINATION = 3;
 	
 	public static void main(String[] args) {
 		MyLogger myLogger =new MyLogger();
@@ -21,6 +24,7 @@ public class GraphClient02 {
 		udGraph.addEdge(0, 1); //represents edge (0,1)
 		udGraph.addEdge(1, 2); //represents edge (1,2)
 		udGraph.addEdge(2, 3); //represents edge (1,2)
+		udGraph.addEdge(0, 3); //represents edge (0,3)
 		
 		myLogger.getLogger().log(Level.INFO, "Graph contents are: "+udGraph);
 		myLogger.getLogger().log(Level.INFO, "Vertices: "+ udGraph.getNumberOfVerticesInUDGraph());
@@ -43,5 +47,15 @@ public class GraphClient02 {
 		for(int vertex = 0; vertex<udGraph.getNumberOfVerticesInUDGraph(); vertex++) {
 			System.out.println("Second last in the path from "+SOURCE+" to "+vertex+" is: "+ secondLast[vertex]);
 		}
+		
+		/* Start of BFS path client*/
+		BreadthFirstSearchPaths bfsPathClient = new BreadthFirstSearchPaths(udGraph, SOURCE);
+		List<Integer> path = bfsPathClient.pathTo(DESTINATION);
+		System.out.println("Path from "+SOURCE+" to "+DESTINATION+" is: ");
+		System.out.print(SOURCE+" -> ");
+		for(int vertex : path) {
+			System.out.print(vertex+" -> ");
+		}
+		System.out.print(DESTINATION);
 	}
 }
