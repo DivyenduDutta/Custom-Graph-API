@@ -40,7 +40,7 @@ public class DepthFirstSearch {
 			System.out.println("All vertices visited in graph!!");
 		}
 		else {
-			assert source >=0 && source <= (maxSize-1) : "Check the adjacent vertices list of "+source;
+			assert source >=0 && source <= (maxSize-1) : source+" seems to be out of vertex range in graph";
 			List<Integer> adjacentVertices = udGraph.getAdjacentVertices(source);
 			visited[source] = true;	//mark source as visited
 			//mark visited to true for all adjacent vertices to source
