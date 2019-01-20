@@ -67,21 +67,24 @@ public class Queue<T> {
 	/**
 	 * This function removes an element from the start of the queue only if its not empty
 	 * 
-	 * @return curQueueSize - current size of the queue
+	 * @return elementRemoved - value removed from Queue
 	 */
-	public int removeHead() {
-		int curQueueSize = getCurrentQueueSize();
+	@SuppressWarnings("unchecked")
+	public T removeHead() {
+		T elementRemoved = (T)new Object();	//not a good way
 		if(getCurrentQueueSize() == 0) { //No elements in queue - can't remove from queue
-			myLogger.getLogger().log(Level.INFO, "The queue is empty");
-			return curQueueSize;
+			myLogger.getLogger().log(Level.INFO, "The queue is empty - value returned by removeHead() may be wierd");
+			myLogger.getLogger().log(Level.WARNING, "value returned by removeHead(): "+elementRemoved);
+			return elementRemoved;
 		}
 		Node<T> toRemove = queueFront;
+		elementRemoved = toRemove.getValue();
 		myLogger.getLogger().log(Level.INFO, "Removing element with value: "+toRemove.getValue()+" from head of queue");
 		queueFront = queueFront.getNextNode();
 		currentQueueSize -= 1;
-		curQueueSize = getCurrentQueueSize();
 		
-		return curQueueSize;
+		
+		return elementRemoved;
 	}
 
 	public int getCurrentQueueSize() {
