@@ -18,6 +18,9 @@ public class BreadthFirstSearch {
 	
 	private int source;
 	
+	//Have this for vertex range validation purposes
+	private int maxSize; 
+	
 	/*The edgeTo[] stores the second last vertex on the path from source to destination.
 	* The destination here are the indexes of the edgeTo[]
 	* If the value of any entry is -1 then there is no path between source and that vertex; also means that the 
@@ -71,6 +74,8 @@ public class BreadthFirstSearch {
 			bfsTraversalQueue = new Queue<Integer>(udGraph.getNumberOfVerticesInUDGraph());	//initialize number of vertices in graph as size of queue
 			bfsTraversalQueue.insertTail(source);	//initially add source to queue
 			visited[source] = true;	//mark source as visited initially
+			//initialize maxSize from the graph
+			maxSize = udGraph.getNumberOfVerticesInUDGraph();
 			edgeTo = new int[udGraph.getNumberOfVerticesInUDGraph()];
 			initEdgeToArray();
 			
@@ -131,6 +136,15 @@ public class BreadthFirstSearch {
 	 * */
 	public int getTotalVerticesVisited() {
 		return count;
+	}
+	
+	/** 
+	 * This method returns the maximum vertices present in the graph. Used for vertex range validation
+	 * 
+	 * @return maxSize 
+	 * */
+	public int getMaxSize() {
+		return maxSize;
 	}
 	
 	/** 
