@@ -59,8 +59,8 @@ public class GraphClient02 {
 				System.out.print(vertex+" -> ");
 			}
 			System.out.print(DESTINATION);
-		}catch(MyNullClassException e) {
+		}catch (MyNullClassException e) {
 			myLogger.getLogger().log(Level.INFO, e.getMessage());
-		}
+		} 
 	}
 }
