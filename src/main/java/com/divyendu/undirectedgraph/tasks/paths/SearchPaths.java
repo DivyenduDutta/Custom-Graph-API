@@ -1,6 +1,8 @@
 package com.divyendu.undirectedgraph.tasks.paths;
 
 import java.util.List;
+
+import com.divyendu.exceptions.MyNullClassException;
 import com.divyendu.logger.MyLogger;
 
 import java.util.logging.Level;
@@ -31,7 +33,7 @@ public class SearchPaths{
 	private SearchInterface searchRunner;
 	private MyLogger myLogger;	//Get instance to Logger
 	
-	public <T extends SearchInterface> SearchPaths(UndirectedGraph udGraph, int source, Class<T> searchPaths) {
+	public <T extends SearchInterface> SearchPaths(UndirectedGraph udGraph, int source, Class<T> searchPaths) throws MyNullClassException{
 		myLogger = new MyLogger();
 		/*Initialize the Search instance to traverse the Graph
 		* This will set values for visited[] and count in Search class
@@ -39,8 +41,11 @@ public class SearchPaths{
 		* and this its more DRY doing it in the corr. search class since then we wouldn't have to do it in all the clients making use of
 		* the Search API
 		*/
-		
+
 		searchRunner = new SearchPathsFactory().create(searchPaths, udGraph, source);
+		if(searchRunner == null) {
+			throw new MyNullClassException("SearchPathsFactory couldnt create instance. Check class passed to create(). Class passed to create(): "+searchPaths.getName());
+		}
 	}
 
 	/** 
