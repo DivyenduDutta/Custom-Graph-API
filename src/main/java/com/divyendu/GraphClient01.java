@@ -1,8 +1,10 @@
 package com.divyendu;
 
 import java.util.List;
+
 import com.divyendu.undirectedgraph.UndirectedGraph;
-import com.divyendu.undirectedgraph.tasks.DepthFirstSearchPaths;
+import com.divyendu.undirectedgraph.tasks.DepthFirstSearch;
+import com.divyendu.undirectedgraph.tasks.paths.SearchPaths;
 
 public class GraphClient01 {
 
@@ -25,7 +27,7 @@ public class GraphClient01 {
 		udGraph.addEdge(3, 5);
 		
 		/* Start of DFS path client*/
-		DepthFirstSearchPaths dfsPathClient = new DepthFirstSearchPaths(udGraph, SOURCE);
+		SearchPaths dfsPathClient = new SearchPaths(udGraph, SOURCE,DepthFirstSearch.class);
 		List<Integer> path = dfsPathClient.pathTo(DESTINATION);
 		System.out.println("Path from "+SOURCE+" to "+DESTINATION+" is: ");
 		System.out.print(SOURCE+" -> ");

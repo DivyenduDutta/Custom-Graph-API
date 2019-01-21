@@ -6,7 +6,7 @@ import java.util.logging.Level;
 import com.divyendu.logger.MyLogger;
 import com.divyendu.undirectedgraph.UndirectedGraph;
 import com.divyendu.undirectedgraph.tasks.bfs.BreadthFirstSearch;
-import com.divyendu.undirectedgraph.tasks.bfs.BreadthFirstSearchPaths;
+import com.divyendu.undirectedgraph.tasks.paths.SearchPaths;
 
 public class GraphClient02 {
 	
@@ -49,7 +49,7 @@ public class GraphClient02 {
 		}
 		
 		/* Start of BFS path client*/
-		BreadthFirstSearchPaths bfsPathClient = new BreadthFirstSearchPaths(udGraph, SOURCE);
+		SearchPaths bfsPathClient = new SearchPaths(udGraph, SOURCE,BreadthFirstSearch.class);
 		List<Integer> path = bfsPathClient.pathTo(DESTINATION);
 		System.out.println("Path from "+SOURCE+" to "+DESTINATION+" is: ");
 		System.out.print(SOURCE+" -> ");
