@@ -3,6 +3,7 @@ package com.divyendu;
 import java.util.List;
 import java.util.logging.Level;
 
+import com.divyendu.exceptions.MyNullClassException;
 import com.divyendu.logger.MyLogger;
 import com.divyendu.undirectedgraph.UndirectedGraph;
 import com.divyendu.undirectedgraph.tasks.bfs.BreadthFirstSearch;
@@ -49,13 +50,17 @@ public class GraphClient02 {
 		}
 		
 		/* Start of BFS path client*/
-		SearchPaths bfsPathClient = new SearchPaths(udGraph, SOURCE,BreadthFirstSearch.class);
-		List<Integer> path = bfsPathClient.pathTo(DESTINATION);
-		System.out.println("Path from "+SOURCE+" to "+DESTINATION+" is: ");
-		System.out.print(SOURCE+" -> ");
-		for(int vertex : path) {
-			System.out.print(vertex+" -> ");
+		try {
+			SearchPaths bfsPathClient = new SearchPaths(udGraph, SOURCE,BreadthFirstSearch.class);
+			List<Integer> path = bfsPathClient.pathTo(DESTINATION);
+			System.out.println("Path from "+SOURCE+" to "+DESTINATION+" is: ");
+			System.out.print(SOURCE+" -> ");
+			for(int vertex : path) {
+				System.out.print(vertex+" -> ");
+			}
+			System.out.print(DESTINATION);
+		}catch(MyNullClassException e) {
+			myLogger.getLogger().log(Level.INFO, e.getMessage());
 		}
-		System.out.print(DESTINATION);
 	}
 }

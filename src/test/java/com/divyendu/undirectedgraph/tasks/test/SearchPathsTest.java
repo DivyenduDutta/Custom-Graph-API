@@ -1,11 +1,14 @@
 package com.divyendu.undirectedgraph.tasks.test;
 
+import com.divyendu.exceptions.MyNullClassException;
+import com.divyendu.logger.MyLogger;
 import com.divyendu.undirectedgraph.UndirectedGraph;
 import com.divyendu.undirectedgraph.tasks.DepthFirstSearch;
 import com.divyendu.undirectedgraph.tasks.bfs.BreadthFirstSearch;
 import com.divyendu.undirectedgraph.tasks.paths.SearchPaths;
 
 import java.util.List;
+import java.util.logging.Level;
 
 import org.junit.Test;
 
@@ -17,6 +20,7 @@ public class SearchPathsTest {
 
 	public UndirectedGraph udGraph = null;
 	public SearchPaths searchPathClient = null;
+	private MyLogger myLogger =new MyLogger();
 	
 	@Test
 	public void pathTotest_positive_DFS() {
@@ -32,7 +36,11 @@ public class SearchPathsTest {
 		udGraph.addEdge(3, 4);
 		udGraph.addEdge(1, 2);
 		
-		searchPathClient = new SearchPaths(udGraph, sourceVertex,DepthFirstSearch.class);
+		try {
+			searchPathClient = new SearchPaths(udGraph, sourceVertex,DepthFirstSearch.class);
+		}catch(MyNullClassException e) {
+			myLogger.getLogger().log(Level.INFO, e.getMessage());
+		}
 		List<Integer> expectedArrayList = new ArrayList<Integer>();
 		expectedArrayList.add(1);
 		expectedArrayList.add(2);
@@ -53,8 +61,11 @@ public class SearchPathsTest {
 		udGraph.addEdge(0, 2);
 		udGraph.addEdge(0, 3);
 		udGraph.addEdge(1, 2);
-		
-		searchPathClient = new SearchPaths(udGraph, sourceVertex,DepthFirstSearch.class);
+		try {
+			searchPathClient = new SearchPaths(udGraph, sourceVertex,DepthFirstSearch.class);
+		}catch(MyNullClassException e) {
+			myLogger.getLogger().log(Level.INFO, e.getMessage());
+		}
 
 		List<Integer> actualArrayList = searchPathClient.pathTo(destinationVertex);
 		assertEquals(actualArrayList.size(), 0);
@@ -74,8 +85,12 @@ public class SearchPathsTest {
 		udGraph.addEdge(2, 4);
 		udGraph.addEdge(3, 4);
 		udGraph.addEdge(1, 2);
+		try {
+			searchPathClient = new SearchPaths(udGraph, sourceVertex,BreadthFirstSearch.class);
+		}catch(MyNullClassException e) {
+			myLogger.getLogger().log(Level.INFO, e.getMessage());
+		}
 		
-		searchPathClient = new SearchPaths(udGraph, sourceVertex,BreadthFirstSearch.class);
 		List<Integer> expectedArrayList = new ArrayList<Integer>();
 		expectedArrayList.add(2);
 		List<Integer> actualArrayList = searchPathClient.pathTo(destinationVertex);
@@ -96,7 +111,12 @@ public class SearchPathsTest {
 		udGraph.addEdge(0, 3);
 		udGraph.addEdge(1, 2);
 		
-		searchPathClient = new SearchPaths(udGraph, sourceVertex,BreadthFirstSearch.class);
+		try {
+		
+			searchPathClient = new SearchPaths(udGraph, sourceVertex,BreadthFirstSearch.class);
+		}catch(MyNullClassException e) {
+			myLogger.getLogger().log(Level.INFO, e.getMessage());
+		}
 
 		List<Integer> actualArrayList = searchPathClient.pathTo(destinationVertex);
 		assertEquals(actualArrayList.size(), 0);

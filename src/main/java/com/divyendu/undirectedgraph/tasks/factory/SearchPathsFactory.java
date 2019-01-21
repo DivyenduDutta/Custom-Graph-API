@@ -12,6 +12,8 @@ import com.divyendu.undirectedgraph.tasks.iframes.SearchInterface;
  * SearchPathsFactory is created to implement the factory design pattern to get an instance of the appropriate 
  * SearchPathsInterface implementation instance
  * 
+ * Make sure to have a null check where create() is called since this method may return null if class isnt matched
+ * 
  * @author divyendu
  *
  */
