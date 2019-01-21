@@ -1,15 +1,16 @@
 package com.divyendu.undirectedgraph.tasks;
 
-import com.divyendu.undirectedgraph.UndirectedGraph;
-
 import java.util.List;
+
+import com.divyendu.undirectedgraph.UndirectedGraph;
+import com.divyendu.undirectedgraph.tasks.iframes.SearchInterface;
 
 /** 
  * This class provides search functionality for the Undirected Graph via the DFS technique
  * 
  * @author divyendu
  * */
-public class DepthFirstSearch {
+public class DepthFirstSearch implements SearchInterface{
 	private boolean[] visited;
 	private int count = 1;		//initialize count to 1, since we are not inc count for source but for its adj vertices
 	
