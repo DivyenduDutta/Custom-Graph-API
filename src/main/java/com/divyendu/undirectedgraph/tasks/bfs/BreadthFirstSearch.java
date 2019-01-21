@@ -6,13 +6,14 @@ import java.util.logging.Level;
 import com.divyendu.logger.MyLogger;
 import com.divyendu.queue.Queue;
 import com.divyendu.undirectedgraph.UndirectedGraph;
+import com.divyendu.undirectedgraph.tasks.iframes.SearchInterface;
 
 /** 
  * This class provides search functionality for the Undirected Graph via the BFS technique
  * 
  * @author divyendu
  * */
-public class BreadthFirstSearch {
+public class BreadthFirstSearch implements SearchInterface{
 	private boolean[] visited;
 	private int count = 1;		//initialize count to 1, since we are not inc count for source but for its adj vertices
 	
